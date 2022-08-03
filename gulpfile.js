@@ -1,14 +1,8 @@
 const 	gulp = require('gulp'),
-		rename = require('gulp-rename'),
-		del = require('del'),
 		concat = require('gulp-concat'),
 		//imagemin = require('gulp-imagemin'),
 		uglify = require('gulp-uglify-es').default,
 		server = require('browser-sync').create();	
-	
-const clean = function() {
-	return del('dist');
-};
 
 const pug2html = function() {
 	return gulp.src('app/**/*.html')
@@ -47,6 +41,6 @@ const serverFunc = function() {
 
 const dev = gulp.parallel( pug2html, styles, scripts, compress)
 
-const build = gulp.series(clean, dev)
+const build = gulp.series(dev)
 
 module.exports.default = gulp.series(build, serverFunc)
